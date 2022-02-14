@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Chart_task</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta content="" name="description"/>
+  <meta content="" name="author"/>
+  
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  
+  <script src="assets/js/chart-2.7.1.js"></script>
+  <script src="assets/js/chartjs-plugin-dragdata.min.js"></script>
+  
+  <link href="assets/css/jquery-ui.css" rel="stylesheet" type="text/css">
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/jquery-ui.js"></script>
+  
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      background-color: #eee;
+      position: absolute;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+<div id="tabs">
+  <ul>
+    <li><a href="#one">Tab 1</a></li>
+    <li><a href="#two">Tab 2</a></li>
+  </ul>
+  <div id="one" style="height: 800px;">
+       <div class="row">
+          <div class="col-md-10">
+               <canvas id="chartJSContainer" style="height: 750px; width: 100%;"></canvas>
+               <canvas id="chartJSContainer_line" style="height: 750px; width: 100%;"></canvas>
+               <canvas id="chartJSContainer_log" style="height: 750px; width: 100%;"></canvas>
+          </div>
+          <div class="col-md-2">
+              <div class="form-group">
+                  <form>
+                      <input type="file" name="file" id="file" style="margin-top:10rem;">       
+                  </form>
+              </div>              
+              <div class="form-group">
+                 <button class="btn btn-default" id="btn_backup">Backup</button>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success" id="btn_run"  disabled="disabled">Run</button>
+              </div>
+              <div class="form-group form-check">
+                 <button class="btn btn-info" id="btn_discard">Discard</button>
+              </div>
+
+              <div class="form-group form-check">
+                 <button class="btn btn-info" id="btn_log"  disabled="disabled">Show Log Line</button>
+              </div> 
+              <div class="form-group form-check">
+                 <button class="btn btn-info" id="btn_line"  disabled="disabled">Show LineChart</button>
+              </div> 
+              <div class="form-group form-check">
+                 <button class="btn btn-info" id="btn_drag"  disabled="disabled">Show Drag Line</button>
+              </div>
+          </div>
+        </div>
+  </div>
+
+  <div id="two"  style="height: 800px;"> 
+    <div class="row">
+          <div class="col-md-10">
+              <canvas id="chartJSContainer2" style="height: 750px; width: 100%;"></canvas>
+              <canvas id="chartJSContainer_line2" style="height: 750px; width: 100%;"></canvas>
+              <canvas id="chartJSContainer_log2" style="height: 750px; width: 100%;"></canvas>
+          </div>
+          <div class="col-md-2">
+              <div class="form-group">
+                <form>
+                 <input type="file" name="file2" id="file2" style="margin-top:10rem;">       
+               </form>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-default" id="btn_backup2">Backup</button>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success" id="btn_run2"  disabled="disabled">Run</button>
+              </div>
+              <div class="form-group form-check">
+                 <button class="btn btn-info" id="btn_discard2">Discard</button>
+              </div>
+              <div class="form-group form-check">
+                 <button class="btn btn-info" id="btn_log2"  disabled="disabled">Show Log Line</button>
+              </div> 
+              <div class="form-group form-check">
+                 <button class="btn btn-info" id="btn_line2"  disabled="disabled">Show LineChart</button>
+              </div> 
+              <div class="form-group form-check">
+                 <button class="btn btn-info" id="btn_drag2"  disabled="disabled">Show Drag Line</button>
+              </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+
+  <script src="myscript.js"></script>
+
+  <script type="text/javascript">
+    $( "#tabs" ).tabs();
+
+    // var myChart1;
+    var myChart1_log;
+    var myChart1_line;
+    var myChart1_drag;
+
+    // var myChart2;
+    var myChart2_log;
+    var myChart2_line;
+    var myChart2_drag;
+
+
+    var options1;
+    var options2;
+
+    var flag_logline1 = 0;
+    var flag_logline2 = 0;
+
+    var arr1 = new Array();
+    var arr2 = new Array();
+    var arr3 = new Array();
+    var arr4 = new Array();
+    var arr2_1 = new Array();
+    var arr2_2 = new Array();
+    var arr2_3 = new Array();
+    var arr2_4 = new Array();
+
+    var show_flag1 = 1; //1: dragline, 2: log, 3: line
+    var show_flag2 = 1; //1: dragline, 2: log, 3: line
+
+   $(document).ready(function(){
+       flag_logline1 = 0;
+       flag_logline2 = 0;
+
+       show_flag1 = 1;
+       $("#chartJSContainer").show();
+       $("#chartJSContainer_line").hide();
+       $("#chartJSContainer_log").hide();
+
+       show_flag2 = 1;
+       $("#chartJSContainer2").show();
+       $("#chartJSContainer_line2").hide();
+       $("#chartJSContainer_log2").hide();
+    });
+
+
+</script>
+
+</body>
+</html>
+
+
